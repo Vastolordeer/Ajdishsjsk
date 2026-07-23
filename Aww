@@ -1,0 +1,22 @@
+$folders = @(
+"C:\WINDOWS\system32\Earnpt-Automation",
+"C:\WINDOWS\system32\Earnpt-Automation-2",
+"C:\WINDOWS\system32\Earnpt-Automation-3",
+"C:\WINDOWS\system32\Earnpt-Automation-4"
+)
+
+foreach ($folder in $folders) {
+    $file = Join-Path $folder "start-real-chrome-profile1-debug.ps1"
+
+    $content = Get-Content $file
+
+    $content = $content | Where-Object {
+        $_ -notmatch "Stopping existing Chrome processes" -and
+        $_ -notmatch "taskkill" -and
+        $_ -notmatch "Start-Sleep -Seconds 2"
+    }
+
+    Set-Content $file $content
+
+    Write-Host "Patched $file"
+}
