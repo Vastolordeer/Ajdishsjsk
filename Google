@@ -1,0 +1,6 @@
+const googleLogin = loginPage.locator(
+  'button:has-text("Continue with Google"), button:has-text("Continue with google"), button:has-text("通过 Google 继续操作"), ' +
+  'a:has-text("Continue with Google"), a:has-text("通过 Google 继续操作"), [aria-label*="Continue with Google" i], [aria-label*="通过 Google 继续操作"]'
+).first();
+
+const googleLoginFallback = loginPage.getByText(/(continue with google|通过 Google 继续操作)/i).first();
